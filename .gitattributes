@@ -1,0 +1,16 @@
+# Usa LF para todos los archivos de texto
+* text=auto eol=lf
+
+# Asegura saltos de línea LF para estos tipos comunes
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.scss text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.env text eol=lf
