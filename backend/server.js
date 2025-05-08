@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const authRoutes = require('./routes/authRoutes');  // Ruta de autenticación
+const recipeRoutes = require('./routes/recipeRoutes');
 
 // Cargar variables de entorno
 dotenv.config();
@@ -11,14 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Conectar a MongoDB
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/seasoning', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => {
-  console.log('Conectado a MongoDB');
-}).catch(err => {
-  console.error('Error al conectar a MongoDB:', err);
-});
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/seasoning');
 
 // Middleware
 app.use(cors());
@@ -49,3 +43,7 @@ function authenticateToken(req, res, next) {
 app.listen(PORT, () => {
   console.log(`Servidor corriendo en http://localhost:${PORT}`);
 });
+
+// Middleware de rutas
+app.use('/api/recipes', recipeRoutes);  // rutas CRUD de recetas
+app.use('/api/users', authRoutes);  // rutas de login/registro
